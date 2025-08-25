@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - Sansui Headphones</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a class="logo" href="index.html">SANSUI</a>
+            
+            <nav class="nav-menu">
+                <a class="nav-link" href="index.html">Trang chủ</a>
+                <a class="nav-link" href="products.html">Sản phẩm</a>
+                <a class="nav-link" href="about.html">Giới thiệu</a>
+                <a class="nav-link active" href="contact.html">Liên hệ</a>
+            </nav>
+
+            <div class="nav-icons">
+                <div class="user-menu" style="position: relative;">
+                    <button class="nav-icon" id="userBtn" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div id="loggedOutMenu">
+                            <a onclick="showLoginModal()">Đăng nhập</a>
+                            <a onclick="showRegisterModal()">Đăng ký</a>
+                        </div>
+                        <div id="loggedInMenu" style="display: none;">
+                            <a onclick="showProfile()">Thông tin cá nhân</a>
+                            <a onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="nav-icon" onclick="showCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Liên hệ với chúng tôi</h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Trang chủ</a> 
+                    <i class="fas fa-chevron-right"></i> 
+                    <span>Liên hệ</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-subtitle">Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Thông tin liên hệ</h3>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Địa chỉ</strong><br>
+                                123 Nguyễn Huệ, Quận 1, TP.HCM
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Điện thoại</strong><br>
+                                +84 28 1234 5678
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                info@sansui.vn
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Giờ làm việc</strong><br>
+                                T2-T6: 8:00 - 18:00<br>
+                                T7: 8:00 - 12:00
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Gửi tin nhắn</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Họ tên *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Tin nhắn *</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sansui</h3>
+                <p>Chuyên cung cấp các sản phẩm âm thanh chất lượng cao với công nghệ tiên tiến nhất.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Sản phẩm</h3>
+                <a href="products.html">Tai nghe Hi-Fi</a><br>
+                <a href="products.html">Tai nghe Gaming</a><br>
+                <a href="products.html">Tai nghe Wireless</a><br>
+                <a href="products.html">Phụ kiện</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Hỗ trợ</h3>
+                <a href="#">Hướng dẫn sử dụng</a><br>
+                <a href="#">Bảo hành</a><br>
+                <a href="#">FAQ</a><br>
+                <a href="contact.html">Liên hệ</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Chính sách</h3>
+                <a href="#">Chính sách bảo mật</a><br>
+                <a href="#">Điều khoản sử dụng</a><br>
+                <a href="#">Chính sách đổi trả</a><br>
+                <a href="#">Vận chuyển</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sansui Headphones. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="authModals"></div>
+    <div id="cartModal" class="modal cart-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cartModal')">&times;</span>
+            <h2>Giỏ hàng</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total" id="cartTotal">Tổng cộng: 0đ</div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <span id="successText">Thành công!</span>
+    </div>
+    <!-- <script src="script.js"></script> -->
+    <script src="js/products.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/contact.js"></script>
+    <!-- <script src="js/product-detail.js"></script> -->
+    <script src="js/contact.js"></script>
+</body>
+</html>

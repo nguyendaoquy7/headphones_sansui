@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sansui Headphones - Chất lượng âm thanh đỉnh cao</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a class="logo" href="index.html">SANSUI</a>
+            
+            <nav class="nav-menu">
+                <a class="nav-link active" href="index.html">Trang chủ</a>
+                <a class="nav-link" href="products.html">Sản phẩm</a>
+                <a class="nav-link" href="about.html">Giới thiệu</a>
+                <a class="nav-link" href="contact.html">Liên hệ</a>
+            </nav>
+
+            <div class="nav-icons">
+                <div class="user-menu" style="position: relative;">
+                    <button class="nav-icon" id="userBtn" onclick="toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div id="loggedOutMenu">
+                            <a onclick="showLoginModal()">Đăng nhập</a>
+                            <a onclick="showRegisterModal()">Đăng ký</a>
+                        </div>
+                        <div id="loggedInMenu" style="display: none;">
+                            <a onclick="showProfile()">Thông tin cá nhân</a>
+                            <a onclick="logout()">Đăng xuất</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="nav-icon" onclick="showCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Trải nghiệm âm thanh <span class="highlight">đẳng cấp</span></h1>
+                <p>Khám phá bộ sưu tập tai nghe Sansui cao cấp với công nghệ âm thanh tiên tiến nhất</p>
+                
+                <div class="hero-buttons">
+                    <a href="products.html" class="cta-button">
+                        <i class="fas fa-shopping-bag"></i>
+                        Mua ngay
+                    </a>
+                    <a href="about.html" class="cta-button secondary">
+                        <i class="fas fa-play"></i>
+                        Tìm hiểu thêm
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Khách hàng</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Sản phẩm</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5★</span>
+                        <span class="stat-label">Đánh giá</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="hero-product-image">
+                    <i class="fas fa-headphones"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sản phẩm nổi bật</h2>
+                <p class="section-subtitle">Khám phá bộ sưu tập tai nghe chất lượng cao với công nghệ âm thanh tiên tiến</p>
+            </div>
+
+            <div class="products-grid" id="featuredProductsGrid">
+                <!-- Sản phẩm nổi bật sẽ được tạo bằng JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="products.html" class="cta-button">
+                    Xem tất cả sản phẩm
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sansui</h3>
+                <p>Chuyên cung cấp các sản phẩm âm thanh chất lượng cao với công nghệ tiên tiến nhất.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Sản phẩm</h3>
+                <a href="products.html">Tai nghe Hi-Fi</a><br>
+                <a href="products.html">Tai nghe Gaming</a><br>
+                <a href="products.html">Tai nghe Wireless</a><br>
+                <a href="products.html">Phụ kiện</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Hỗ trợ</h3>
+                <a href="#">Hướng dẫn sử dụng</a><br>
+                <a href="#">Bảo hành</a><br>
+                <a href="#">FAQ</a><br>
+                <a href="contact.html">Liên hệ</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Chính sách</h3>
+                <a href="#">Chính sách bảo mật</a><br>
+                <a href="#">Điều khoản sử dụng</a><br>
+                <a href="#">Chính sách đổi trả</a><br>
+                <a href="#">Vận chuyển</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sansui Headphones. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="authModals"></div>
+    <div id="cartModal" class="modal cart-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cartModal')">&times;</span>
+            <h2>Giỏ hàng</h2>
+            <div id="cartItems">
+                <!-- Cart items sẽ được tạo bằng JavaScript -->
+            </div>
+            <div class="cart-total" id="cartTotal">
+                Tổng cộng: 0đ
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <span id="successText">Thành công!</span>
+    </div>
+    <!-- <script src="script.js"></script> -->
+    <script src="js/products.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <!-- <script src="js/product-detail.js"></script> -->
+    <script src="js/contact.js"></script>
+</body>
+</html>
