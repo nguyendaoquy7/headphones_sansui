@@ -1,335 +1,220 @@
 // Utility functions
 
-// Format price to Vietnamese currency
-function formatPrice(price) {
+// Format currency to Vietnamese dong
+function formatCurrency(amount) {
     return new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
-    }).format(price);
+    }).format(amount).replace('₫', 'đ');
 }
 
-// Format number with thousand separators
-function formatNumber(number) {
-    return new Intl.NumberFormat('vi-VN').format(number);
-}
-
-// Generate star rating HTML
-function generateStars(rating, maxStars = 5) {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-    const emptyStars = maxStars - fullStars - (hasHalfStar ? 1 : 0);
-    
-    let starsHTML = '';
-    
-    // Full stars
-    for (let i = 0; i < fullStars; i++) {
-        starsHTML += '<i class="fas fa-star"></i>';
-    }
-    
-    // Half star
-    if (hasHalfStar) {
-        starsHTML += '<i class="fas fa-star-half-alt"></i>';
-    }
-    
-    // Empty stars
-    for (let i = 0; i < emptyStars; i++) {
-        starsHTML += '<i class="far fa-star"></i>';
-    }
-    
-    return starsHTML;
-}
-
-// Modal functions
+// Show modal
 function showModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Prevent body scrolling
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
 }
 
+// Close modal
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.remove('show');
-        document.body.style.overflow = 'auto'; // Restore body scrolling
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
     }
 }
 
-// Close modals when clicking outside
-window.addEventListener('click', function(event) {
-    if (event.target.classList.contains('modal')) {
-        event.target.classList.remove('show');
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// Success message function
-function showSuccess(message, duration = 3000) {
-    const successMessage = document.getElementById('successMessage');
+// Show success message
+function showSuccess(message) {
+    const successMsg = document.getElementById('successMessage');
     const successText = document.getElementById('successText');
     
-    if (successMessage && successText) {
+    if (successMsg && successText) {
         successText.textContent = message;
-        successMessage.classList.add('show');
+        successMsg.classList.add('show');
         
+        // Auto hide after 3 seconds
         setTimeout(() => {
-            successMessage.classList.remove('show');
-        }, duration);
+            successMsg.classList.remove('show');
+        }, 3000);
     }
 }
 
-// Error message function
-function showError(message, duration = 3000) {
-    // Create error message element if it doesn't exist
-    let errorMessage = document.getElementById('errorMessage');
-    if (!errorMessage) {
-        errorMessage = document.createElement('div');
-        errorMessage.id = 'errorMessage';
-        errorMessage.className = 'error-message';
-        errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i><span id="errorText"></span>';
-        document.body.appendChild(errorMessage);
+// Generate star rating HTML
+function generateStars(rating) {
+    let stars = '';
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    
+    // Full stars
+    for (let i = 0; i < fullStars; i++) {
+        stars += '<i class="fas fa-star"></i>';
     }
     
-    const errorText = document.getElementById('errorText');
-    if (errorText) {
-        errorText.textContent = message;
-        errorMessage.classList.add('show');
-        
-        setTimeout(() => {
-            errorMessage.classList.remove('show');
-        }, duration);
+    // Half star
+    if (hasHalfStar) {
+        stars += '<i class="fas fa-star-half-alt"></i>';
     }
+    
+    // Empty stars
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+    for (let i = 0; i < emptyStars; i++) {
+        stars += '<i class="far fa-star"></i>';
+    }
+    
+    return stars;
 }
 
-// Debounce function for search and input handling
-function debounce(func, wait, immediate) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            timeout = null;
-            if (!immediate) func(...args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func(...args);
-    };
+// Get URL parameters
+function getUrlParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
 }
 
-// Throttle function for scroll and resize events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
+// Set URL parameter
+function setUrlParameter(name, value) {
+    const url = new URL(window.location);
+    url.searchParams.set(name, value);
+    window.history.pushState({}, '', url);
 }
 
 // Smooth scroll to element
-function scrollToElement(elementId, offset = 0) {
+function scrollToElement(elementId) {
     const element = document.getElementById(elementId);
     if (element) {
-        const elementPosition = element.offsetTop - offset;
-        window.scrollTo({
-            top: elementPosition,
-            behavior: 'smooth'
+        element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
         });
     }
 }
 
-// Check if element is in viewport
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+// Debounce function for search/filter
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
-// Animate counter numbers
-function animateCounter(element, target, duration = 2000) {
-    const start = 0;
-    const startTime = performance.now();
-    
-    function updateCounter(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(start + (target - start) * easeOutCubic);
-        
-        element.textContent = formatNumber(current);
-        
-        if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = formatNumber(target);
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    const modals = document.querySelectorAll('.modal.show');
+    modals.forEach(modal => {
+        if (event.target === modal) {
+            const modalId = modal.id;
+            closeModal(modalId);
+        }
+    });
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const activeModal = document.querySelector('.modal.show');
+        if (activeModal) {
+            closeModal(activeModal.id);
         }
     }
-    
-    requestAnimationFrame(updateCounter);
-}
+});
 
-// Lazy load images
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                observer.unobserve(img);
-            }
-        });
+// Prevent modal content clicks from closing modal
+document.addEventListener('click', function(event) {
+    if (event.target.closest('.modal-content')) {
+        event.stopPropagation();
+    }
+});
+
+// Initialize tooltips (if needed)
+function initTooltips() {
+    const tooltipTriggers = document.querySelectorAll('[data-tooltip]');
+    tooltipTriggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', showTooltip);
+        trigger.addEventListener('mouseleave', hideTooltip);
     });
-    
-    images.forEach(img => imageObserver.observe(img));
 }
 
-// Copy to clipboard
-function copyToClipboard(text) {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(() => {
-            showSuccess('Đã sao chép vào clipboard!');
-        }).catch(() => {
-            fallbackCopyTextToClipboard(text);
-        });
-    } else {
-        fallbackCopyTextToClipboard(text);
-    }
+function showTooltip(event) {
+    const text = event.target.getAttribute('data-tooltip');
+    // Create and show tooltip
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    tooltip.textContent = text;
+    document.body.appendChild(tooltip);
+    
+    // Position tooltip
+    const rect = event.target.getBoundingClientRect();
+    tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + 'px';
+    tooltip.style.left = rect.left + (rect.width - tooltip.offsetWidth) / 2 + 'px';
 }
 
-function fallbackCopyTextToClipboard(text) {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    
-    try {
-        document.execCommand('copy');
-        showSuccess('Đã sao chép vào clipboard!');
-    } catch (err) {
-        showError('Không thể sao chép!');
+function hideTooltip() {
+    const tooltip = document.querySelector('.tooltip');
+    if (tooltip) {
+        tooltip.remove();
     }
-    
-    document.body.removeChild(textArea);
 }
 
 // Validate email format
-function isValidEmail(email) {
+function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
 // Validate phone number (Vietnamese format)
-function isValidPhone(phone) {
-    const phoneRegex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-    return phoneRegex.test(phone);
+function validatePhone(phone) {
+    const phoneRegex = /^(\+84|84|0)?[1-9]\d{8,9}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
 }
 
-// Generate random ID
-function generateId() {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
-}
-
-// Get query parameters
-function getQueryParams() {
-    const params = {};
-    const queryString = window.location.search.substring(1);
-    const queries = queryString.split('&');
-    
-    queries.forEach(query => {
-        const [key, value] = query.split('=');
-        if (key) {
-            params[decodeURIComponent(key)] = decodeURIComponent(value || '');
-        }
-    });
-    
-    return params;
-}
-
-// Set query parameter
-function setQueryParam(key, value) {
-    const url = new URL(window.location);
-    url.searchParams.set(key, value);
-    window.history.pushState({}, '', url);
-}
-
-// Remove query parameter
-function removeQueryParam(key) {
-    const url = new URL(window.location);
-    url.searchParams.delete(key);
-    window.history.pushState({}, '', url);
-}
-
-// Local storage helpers
-function setLocalStorage(key, value) {
-    try {
-        localStorage.setItem(key, JSON.stringify(value));
-        return true;
-    } catch (error) {
-        console.warn('Cannot save to localStorage:', error);
-        return false;
-    }
-}
-
-function getLocalStorage(key, defaultValue = null) {
-    try {
-        const item = localStorage.getItem(key);
-        return item ? JSON.parse(item) : defaultValue;
-    } catch (error) {
-        console.warn('Cannot read from localStorage:', error);
-        return defaultValue;
-    }
-}
-
-function removeLocalStorage(key) {
-    try {
-        localStorage.removeItem(key);
-        return true;
-    } catch (error) {
-        console.warn('Cannot remove from localStorage:', error);
-        return false;
-    }
-}
-
-// Device detection
-function isMobile() {
-    return window.innerWidth <= 768;
-}
-
-function isTablet() {
-    return window.innerWidth > 768 && window.innerWidth <= 1024;
-}
-
-function isDesktop() {
-    return window.innerWidth > 1024;
-}
-
-// Add loading spinner
+// Loading state management
 function showLoading(element) {
-    const spinner = document.createElement('div');
-    spinner.className = 'loading-spinner';
-    spinner.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-    element.appendChild(spinner);
+    if (element) {
+        element.classList.add('loading');
+        element.disabled = true;
+        const originalText = element.textContent;
+        element.setAttribute('data-original-text', originalText);
+        element.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang xử lý...';
+    }
 }
 
 function hideLoading(element) {
-    const spinner = element.querySelector('.loading-spinner');
-    if (spinner) {
-        spinner.remove();
+    if (element && element.classList.contains('loading')) {
+        element.classList.remove('loading');
+        element.disabled = false;
+        const originalText = element.getAttribute('data-original-text');
+        if (originalText) {
+            element.textContent = originalText;
+            element.removeAttribute('data-original-text');
+        }
+    }
+}
+
+// Animation observer for scroll animations
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        animatedElements.forEach(el => observer.observe(el));
     }
 }

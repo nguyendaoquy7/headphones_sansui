@@ -6,7 +6,7 @@
     <title>Liên hệ - Sansui Headphones</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -52,88 +52,79 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <h1>Liên hệ với chúng tôi</h1>
-                <div class="breadcrumb">
-                    <a href="index.html">Trang chủ</a> 
-                    <i class="fas fa-chevron-right"></i> 
-                    <span>Liên hệ</span>
-                </div>
-            </div>
-        </section>
-
         <!-- Contact Section -->
-        <section class="contact-section">
-            <div class="container">
-                <div class="section-header">
-                    <p class="section-subtitle">Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
-                </div>
-
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <h3>Thông tin liên hệ</h3>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Địa chỉ</strong><br>
-                                123 Nguyễn Huệ, Quận 1, TP.HCM
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Điện thoại</strong><br>
-                                +84 28 1234 5678
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong><br>
-                                info@sansui.vn
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <strong>Giờ làm việc</strong><br>
-                                T2-T6: 8:00 - 18:00<br>
-                                T7: 8:00 - 12:00
-                            </div>
-                        </div>
+        <section id="contact" class="page-section active">
+            <div class="contact-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Liên hệ với chúng tôi</h2>
+                        <p class="section-subtitle">Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
                     </div>
 
-                    <div class="contact-form">
-                        <h3>Gửi tin nhắn</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Họ tên *</label>
-                                <input type="text" id="name" name="name" required>
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <h3>Thông tin liên hệ</h3>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <strong>Địa chỉ</strong><br>
+                                    123 Nguyễn Huệ, Quận 1, TP.HCM
+                                </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Điện thoại</strong><br>
+                                    +84 28 1234 5678
+                                </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="phone">Số điện thoại</label>
-                                <input type="tel" id="phone" name="phone">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email</strong><br>
+                                    info@sansui.vn
+                                </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="message">Tin nhắn *</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
+                            <div class="contact-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Giờ làm việc</strong><br>
+                                    T2-T6: 8:00 - 18:00<br>
+                                    T7: 8:00 - 12:00
+                                </div>
                             </div>
-                            
-                            <button type="submit" class="submit-btn">Gửi tin nhắn</button>
-                        </form>
+                        </div>
+
+                        <div class="contact-form">
+                            <h3>Gửi tin nhắn</h3>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="name">Họ tên *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Số điện thoại</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message">Tin nhắn *</label>
+                                    <textarea id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn">Gửi tin nhắn</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -156,10 +147,10 @@
             
             <div class="footer-section">
                 <h3>Sản phẩm</h3>
-                <a href="products.html">Tai nghe Hi-Fi</a><br>
-                <a href="products.html">Tai nghe Gaming</a><br>
-                <a href="products.html">Tai nghe Wireless</a><br>
-                <a href="products.html">Phụ kiện</a>
+                <a href="#">Tai nghe Hi-Fi</a><br>
+                <a href="#">Tai nghe Gaming</a><br>
+                <a href="#">Tai nghe Wireless</a><br>
+                <a href="#">Phụ kiện</a>
             </div>
             
             <div class="footer-section">
@@ -167,7 +158,7 @@
                 <a href="#">Hướng dẫn sử dụng</a><br>
                 <a href="#">Bảo hành</a><br>
                 <a href="#">FAQ</a><br>
-                <a href="contact.html">Liên hệ</a>
+                <a href="#">Liên hệ</a>
             </div>
             
             <div class="footer-section">
@@ -185,14 +176,67 @@
     </footer>
 
     <!-- Modals -->
-    <div id="authModals"></div>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Đăng nhập</h2>
+            <form class="auth-form" id="loginForm">
+                <input type="email" placeholder="Email" id="loginEmail" required>
+                <input type="password" placeholder="Mật khẩu" id="loginPassword" required>
+                <button type="submit">Đăng nhập</button>
+            </form>
+            <div class="auth-switch">
+                <p>Chưa có tài khoản? <a onclick="switchToRegister()">Đăng ký ngay</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Đăng ký</h2>
+            <form class="auth-form" id="registerForm">
+                <input type="text" placeholder="Họ tên" id="registerName" required>
+                <input type="email" placeholder="Email" id="registerEmail" required>
+                <input type="password" placeholder="Mật khẩu" id="registerPassword" required>
+                <input type="password" placeholder="Xác nhận mật khẩu" id="confirmPassword" required>
+                <button type="submit">Đăng ký</button>
+            </form>
+            <div class="auth-switch">
+                <p>Đã có tài khoản? <a onclick="switchToLogin()">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
     <div id="cartModal" class="modal cart-modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('cartModal')">&times;</span>
             <h2>Giỏ hàng</h2>
-            <div id="cartItems"></div>
-            <div class="cart-total" id="cartTotal">Tổng cộng: 0đ</div>
+            <div id="cartItems">
+                <!-- Cart items sẽ được tạo bằng JavaScript -->
+            </div>
+            <div class="cart-total" id="cartTotal">
+                Tổng cộng: 0đ
+            </div>
             <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('profileModal')">&times;</span>
+            <h2>Thông tin cá nhân</h2>
+            <form class="auth-form" id="profileForm">
+                <input type="text" placeholder="Họ tên" id="profileName">
+                <input type="email" placeholder="Email" id="profileEmail" readonly>
+                <input type="tel" placeholder="Số điện thoại" id="profilePhone">
+                <textarea placeholder="Địa chỉ" id="profileAddress" rows="3"></textarea>
+                <button type="submit">Cập nhật thông tin</button>
+            </form>
         </div>
     </div>
 
@@ -201,14 +245,7 @@
         <i class="fas fa-check-circle"></i>
         <span id="successText">Thành công!</span>
     </div>
-    <!-- <script src="script.js"></script> -->
-    <script src="js/products.js"></script>
-    <script src="js/products-data.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/contact.js"></script>
-    <!-- <script src="js/product-detail.js"></script> -->
-    <script src="js/contact.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>

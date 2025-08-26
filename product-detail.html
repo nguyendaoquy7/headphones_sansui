@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">Chi tiết sản phẩm - Sansui Headphones</title>
+    <title>Chi tiết sản phẩm - Sansui Headphones</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -16,7 +16,7 @@
             
             <nav class="nav-menu">
                 <a class="nav-link" href="index.html">Trang chủ</a>
-                <a class="nav-link" href="products.html">Sản phẩm</a>
+                <a class="nav-link active" href="products.html">Sản phẩm</a>
                 <a class="nav-link" href="about.html">Giới thiệu</a>
                 <a class="nav-link" href="contact.html">Liên hệ</a>
             </nav>
@@ -52,69 +52,71 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <div class="breadcrumb" id="breadcrumb">
-                    <a href="index.html">Trang chủ</a> 
-                    <i class="fas fa-chevron-right"></i> 
-                    <a href="products.html">Sản phẩm</a>
-                    <i class="fas fa-chevron-right"></i> 
-                    <span id="productBreadcrumb">Chi tiết sản phẩm</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Product Detail -->
-        <section class="product-detail">
-            <div class="container">
-                <div class="product-detail-content">
-                    <div class="product-detail-image">
-                        <div class="main-product-image" id="mainImage">
-                            <i class="fas fa-headphones"></i>
+        <!-- Product Detail Section -->
+        <section id="product-detail" class="page-section active">
+            <div class="product-detail">
+                <div class="container">
+                    <div class="product-detail-content">
+                        <div class="product-detail-image">
+                            <div class="main-product-image" id="mainProductImage"></div>
+                            <div class="product-thumbnails" id="productThumbnails">
+                                <!-- Thumbnails will be populated by JavaScript -->
+                            </div>
                         </div>
-                        <div class="product-thumbnails" id="thumbnails">
-                            <!-- Thumbnails sẽ được tạo bằng JavaScript -->
+                        
+                        <div class="product-detail-info">
+                            <div class="product-badge" id="productBadge"></div>
+                            <div class="product-detail-category" id="productCategory"></div>
+                            <h1 id="productName"></h1>
+                            <div class="product-detail-rating">
+                                <div class="stars" id="productStars"></div>
+                                <span class="rating-text" id="productRating"></span>
+                            </div>
+                            
+                            <div class="product-detail-price">
+                                <span class="detail-current-price" id="currentPrice"></span>
+                                <span class="detail-original-price" id="originalPrice"></span>
+                                <span class="detail-discount" id="discount"></span>
+                            </div>
+                            
+                            <div class="product-features">
+                                <h3>Tính năng nổi bật</h3>
+                                <ul class="features-list" id="productFeatures">
+                                    <!-- Features will be populated by JavaScript -->
+                                </ul>
+                            </div>
+                            
+                            <div class="product-actions">
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn-detail" onclick="updateDetailQuantity(-1)">-</button>
+                                    <input type="text" class="quantity-input" id="quantityInput" value="1" readonly>
+                                    <button class="quantity-btn-detail" onclick="updateDetailQuantity(1)">+</button>
+                                </div>
+                                <button class="add-to-cart-detail" onclick="addToCartFromDetail()">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Thêm vào giỏ
+                                </button>
+                            </div>
+                            
+                            <div class="product-tabs">
+                                <div class="tabs-nav">
+                                    <button class="tab-btn active" onclick="showTab('description')">Mô tả</button>
+                                    <button class="tab-btn" onclick="showTab('specifications')">Thông số</button>
+                                    <button class="tab-btn" onclick="showTab('reviews')">Đánh giá</button>
+                                </div>
+                                <div class="tab-content active" id="description"></div>
+                                <div class="tab-content" id="specifications">
+                                    <table class="specifications-table">
+                                        <tbody id="specificationsTable">
+                                            <!-- Specifications will be populated by JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-content" id="reviews">
+                                    <!-- Reviews will be populated by JavaScript -->
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="product-detail-info" id="productInfo">
-                        <!-- Thông tin sản phẩm sẽ được tạo bằng JavaScript -->
-                    </div>
-                </div>
-
-                <!-- Product Tabs -->
-                <div class="product-tabs">
-                    <div class="tabs-nav">
-                        <button class="tab-btn active" onclick="showTab('description')">Mô tả</button>
-                        <button class="tab-btn" onclick="showTab('specifications')">Thông số kỹ thuật</button>
-                        <button class="tab-btn" onclick="showTab('reviews')">Đánh giá</button>
-                    </div>
-
-                    <div class="tab-content active" id="description-tab">
-                        <div id="productDescription">
-                            <!-- Mô tả chi tiết sẽ được tạo bằng JavaScript -->
-                        </div>
-                    </div>
-
-                    <div class="tab-content" id="specifications-tab">
-                        <table class="specifications-table" id="specificationsTable">
-                            <!-- Bảng thông số kỹ thuật sẽ được tạo bằng JavaScript -->
-                        </table>
-                    </div>
-
-                    <div class="tab-content" id="reviews-tab">
-                        <div id="reviewsContent">
-                            <!-- Đánh giá sẽ được tạo bằng JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Related Products -->
-                <div class="related-products">
-                    <h3>Sản phẩm liên quan</h3>
-                    <div class="products-grid" id="relatedProducts">
-                        <!-- Sản phẩm liên quan sẽ được tạo bằng JavaScript -->
                     </div>
                 </div>
             </div>
@@ -137,10 +139,10 @@
             
             <div class="footer-section">
                 <h3>Sản phẩm</h3>
-                <a href="products.html">Tai nghe Hi-Fi</a><br>
-                <a href="products.html">Tai nghe Gaming</a><br>
-                <a href="products.html">Tai nghe Wireless</a><br>
-                <a href="products.html">Phụ kiện</a>
+                <a href="#">Tai nghe Hi-Fi</a><br>
+                <a href="#">Tai nghe Gaming</a><br>
+                <a href="#">Tai nghe Wireless</a><br>
+                <a href="#">Phụ kiện</a>
             </div>
             
             <div class="footer-section">
@@ -148,7 +150,7 @@
                 <a href="#">Hướng dẫn sử dụng</a><br>
                 <a href="#">Bảo hành</a><br>
                 <a href="#">FAQ</a><br>
-                <a href="contact.html">Liên hệ</a>
+                <a href="#">Liên hệ</a>
             </div>
             
             <div class="footer-section">
@@ -166,14 +168,67 @@
     </footer>
 
     <!-- Modals -->
-    <div id="authModals"></div>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Đăng nhập</h2>
+            <form class="auth-form" id="loginForm">
+                <input type="email" placeholder="Email" id="loginEmail" required>
+                <input type="password" placeholder="Mật khẩu" id="loginPassword" required>
+                <button type="submit">Đăng nhập</button>
+            </form>
+            <div class="auth-switch">
+                <p>Chưa có tài khoản? <a onclick="switchToRegister()">Đăng ký ngay</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Đăng ký</h2>
+            <form class="auth-form" id="registerForm">
+                <input type="text" placeholder="Họ tên" id="registerName" required>
+                <input type="email" placeholder="Email" id="registerEmail" required>
+                <input type="password" placeholder="Mật khẩu" id="registerPassword" required>
+                <input type="password" placeholder="Xác nhận mật khẩu" id="confirmPassword" required>
+                <button type="submit">Đăng ký</button>
+            </form>
+            <div class="auth-switch">
+                <p>Đã có tài khoản? <a onclick="switchToLogin()">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
     <div id="cartModal" class="modal cart-modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('cartModal')">&times;</span>
             <h2>Giỏ hàng</h2>
-            <div id="cartItems"></div>
-            <div class="cart-total" id="cartTotal">Tổng cộng: 0đ</div>
+            <div id="cartItems">
+                <!-- Cart items will be populated by JavaScript -->
+            </div>
+            <div class="cart-total" id="cartTotal">
+                Tổng cộng: 0đ
+            </div>
             <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">Thanh toán</button>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('profileModal')">&times;</span>
+            <h2>Thông tin cá nhân</h2>
+            <form class="auth-form" id="profileForm">
+                <input type="text" placeholder="Họ tên" id="profileName">
+                <input type="email" placeholder="Email" id="profileEmail" readonly>
+                <input type="tel" placeholder="Số điện thoại" id="profilePhone">
+                <textarea placeholder="Địa chỉ" id="profileAddress" rows="3"></textarea>
+                <button type="submit">Cập nhật thông tin</button>
+            </form>
         </div>
     </div>
 
@@ -182,14 +237,7 @@
         <i class="fas fa-check-circle"></i>
         <span id="successText">Thành công!</span>
     </div>
-    <!-- <script src="script.js"></script> -->
-    <script src="js/products.js"></script>
-    <script src="js/products-data.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/product-detail.js"></script>
-    <!-- <script src="js/product-detail.js"></script> -->
-    <script src="js/contact.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
